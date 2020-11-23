@@ -39,7 +39,7 @@ public class Controller {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> findById(@PathVariable String id) {
+    public ResponseEntity<Cliente> findById(@PathVariable Long id) {
         Optional<Cliente> clienteOp = repositorioCliente.findById(id);
         if( clienteOp.isEmpty() )
         return ResponseEntity.notFound().build();
@@ -47,7 +47,7 @@ public class Controller {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> update(@RequestBody Cliente cliente,@PathVariable String id) {
+    public ResponseEntity<Cliente> update(@RequestBody Cliente cliente,@PathVariable Long id) {
         Optional<Cliente> clienteOp = repositorioCliente.findById(id);
         if (clienteOp.isEmpty())
             return ResponseEntity.notFound().build();
@@ -57,7 +57,7 @@ public class Controller {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public void delete(@PathVariable String id) {
+    public void delete(@PathVariable Long id) {
         repositorioCliente.deleteById(id);
     }
 
